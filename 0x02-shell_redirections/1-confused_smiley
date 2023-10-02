@@ -1,2 +1,2 @@
 #!/bin/bash
-echo \u{1F615}
+echo {1F615}
