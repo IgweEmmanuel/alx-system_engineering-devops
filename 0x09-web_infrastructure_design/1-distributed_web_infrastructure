@@ -1,17 +1,33 @@
 Here is the link:
 
-https://imgur.com/a/Po7eoTO
-https://imgur.com/a/Po7eoTO
+https://imgur.com/a/cKr6M9f
+https://imgur.com/a/cKr6M9f
 
 ----------------------------------------------------------------
 Here is the explanation of this diagram:
 
+Here's an explanation of the infrastructure:
 
-This diagram depicts
+1. Web Server (Nginx): Nginx is used as the web server to serve static content and handle web requests. It is lightweight, efficient, and commonly used in web server setups.
 
-- Web Servers behind a Load Balancer. This helps to redistribute traffic to non too busy servers to balance load to prevent downtime and crash.
-- Three Firewalls for security.
-- An SSL Certificate for serving www.foobar.com over HTTPS.
-- Three Monitoring Clients (Data Collectors) for Sumologic or other monitoring services.
+2. Application Server: This server hosts the application code base. It runs the application logic and processes dynamic content. It is separated from the web server to enhance scalability and maintainability.
 
-The components are interconnected to illustrate the flow of data and traffic within the infrastructure.
+3. Load Balancer (HAproxy): HAproxy is used as the load balancer to distribute incoming web traffic across multiple servers. It ensures high availability, improves performance, and prevents overload on individual servers.
+
+4. Primary and Replica Database (MySQL): The primary database serves as the master node, handling write operations and maintaining the authoritative copy of the data. The replica database serves as the slave node, replicating data from the primary database to provide read scalability, fault tolerance, and disaster recovery.
+
+5. Application Files: This includes the code base of the application. It contains scripts, executables, configuration files, and other resources required to run the application.
+
+Now, let's address some specifics and issues with this infrastructure:
+
+Specifics:
+- Load Balancer Distribution Algorithm: HAproxy is configured with a round-robin distribution algorithm, which evenly distributes incoming requests among the available servers. This ensures that each server receives an equal share of the load.
+- Active-Passive Setup: The load balancer is configured with an Active-Passive setup, where one server (active) handles incoming traffic while the other server (passive) remains on standby. In case of failure, the passive server takes over to ensure continuous service availability.
+- Primary-Replica Database Cluster: The primary database handles write operations and maintains data consistency, while the replica database asynchronously replicates data from the primary to provide read scalability and fault tolerance.
+
+Issues:
+- Single Points of Failure (SPOF): The infrastructure lacks redundancy in critical components such as the web server, application server, load balancer, and database. Failure of any of these components could result in downtime or service disruption.
+- Security Issues: The infrastructure lacks security measures such as firewalls and HTTPS encryption. This makes it vulnerable to unauthorized access, data breaches, and other security threats.
+- No Monitoring: There is no monitoring solution implemented to track the health and performance of the infrastructure components. This makes it difficult to detect and address issues proactively, leading to potential downtime and service degradation.
+
+

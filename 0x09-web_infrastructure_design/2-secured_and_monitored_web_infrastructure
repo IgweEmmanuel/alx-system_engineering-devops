@@ -1,0 +1,17 @@
+Here is the link:
+
+https://imgur.com/a/W8HehUn
+https://imgur.com/a/W8HehUn
+
+----------------------------------------------------------------
+Here is the explanation of this diagram:
+
+
+This diagram depicts
+
+- Web Servers behind a Load Balancer. This helps to redistribute traffic to non too busy servers to balance load to prevent downtime and crash.
+- Three Firewalls for security.
+- An SSL Certificate for serving www.foobar.com over HTTPS.
+- Three Monitoring Clients (Data Collectors) for Sumologic or other monitoring services.
+
+The components are interconnected to illustrate the flow of data and traffic within the infrastructure.
