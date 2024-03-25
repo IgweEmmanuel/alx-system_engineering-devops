@@ -1,0 +1,22 @@
+
+https://imgur.com/UTshB8e
+https://imgur.com/UTshB8e
+
+
+-----------------------------------------------------------------------------------------
+Here's the explanation on how it works:
+1. A user accesses www.foobar.com.
+2. The user's computer resolves the domain name to the server's IP address.
+3. The user's browser sends a request to the server.
+4. Nginx receives the request and serves static content or forwards dynamic requests to the application server.
+5. The application server processes the request, interacting with the database as needed.
+6. The application server generates a response.
+7. Nginx sends the response back to the user's browser.
+8. The user's browser displays the web page.
+
+However, there are some issues:
+Single Point of Failure (SPOF): If the server goes down, the website becomes inaccessible.
+Downtime During Maintenance: The website may experience downtime during maintenance.
+Scalability Challenges: The infrastructure is not easily scalable.
+
+To improve, consider adding redundancy, load balancing, and automation.
