@@ -1,0 +1,19 @@
+Here is the link to the scale up design advanced task:
+
+https://imgur.com/a/4bND8VK
+https://imgur.com/a/4bND8VK
+
+-----------------------------------------------------------------------------
+
+Here is the explanation to the added components or devices: 
+
+
+Specifics:
+
+1. Additional Server: Adding another server improves fault tolerance and scalability by distributing the workload across multiple servers.
+
+2. HAProxy Cluster: Configuring HAProxy as a cluster ensures redundancy and high availability, minimizing the risk of downtime and service disruption.
+
+3. Split Components: Hosting each component on its dedicated server enhances performance, security, and manageability, allowing for better resource allocation and isolation of services.
+
+By adding these components and configurations, we ensure a robust, scalable, and fault-tolerant web infrastructure that meets the requirements for performance, availability, and security.
