@@ -1,18 +1,10 @@
 #This manifest uses package resource to install flask
-exec { 'python3-venv':
-  command => 'sudo apt install python3-venv',
+package { 'python3-pip':
+  ensure => installed,
 }
 
-exec { 'venv':
-  command => 'python3 -m venv venv',
-}
-
-exec { 'activate':
-  command => 'source venv/bin/activate',
-}
-
-exec { 'flask':
-  command => '/usr/bin/pip3 install flask==2.1.0',
-  path    => '/usr/bin',
-  unless  => '/usr/bin/pip3 show flask | grep -q "Version: 2.1.0"',
+exec { 'install_flask':
+  command => '/usr/bin/pip3 install Flask==2.1.0',
+  path    => ['/usr/bin', '/usr/local/bin'],
+  creates => '/usr/local/lib/python3.8/dist-packages/Flask-2.1.0.dist-info',
 }
