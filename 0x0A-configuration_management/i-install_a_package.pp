@@ -1,5 +1,5 @@
 #This manifest uses package resource to install flask
-package { 'python3-pip3':
+package { 'python3-pip':
   ensure => installed,
 }
 
