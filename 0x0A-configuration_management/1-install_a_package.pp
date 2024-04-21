@@ -1,6 +1,6 @@
 #This manifest uses package resource to install flask
 package { ['python3', 'python3-pip', 'build-essential', 'libssl-dev', 'libffi-dev', 'python3-dev']:
-  ensure => installed,
+  ensure => 'installed',
 }
 
 exec { 'install_flask':
