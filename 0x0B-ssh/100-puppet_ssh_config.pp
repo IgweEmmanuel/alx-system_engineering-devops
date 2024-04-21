@@ -1,6 +1,6 @@
 #This is using puppet file to configure remote server
 file { '~/.ssh/config':
-  ensure  => present,
+  ensure  => 'present',
   content => "
 Host your_server_hostname
   IdentityFile ~/.ssh/school
