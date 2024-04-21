@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Script that creates RSA key with name, bit and passphrase
+ssh -f school -b 4096 -N betty
