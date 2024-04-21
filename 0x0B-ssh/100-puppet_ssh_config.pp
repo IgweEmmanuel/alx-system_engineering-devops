@@ -2,11 +2,11 @@
 file_line { 'turn of passord authentication':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => '  PasswordAuthentication no',
+  line   => '    PasswordAuthentication no',
 }
 
 file_line { 'identify file':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => 'IdentifyFile ~/.ssh/school',
+  line   => '    IdentifyFile ~/.ssh/school',
 }
