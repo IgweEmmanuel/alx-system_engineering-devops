@@ -1,8 +1,8 @@
 #This is using puppet file to configure remote server
 file { '~/.ssh/config':
   ensure  => 'present',
-  command => "
-Host your_server_hostname
+  content => "
+Host ubuntu@18.207.139.77
   IdentityFile ~/.ssh/school
   PasswordAuthentication no
 ",
