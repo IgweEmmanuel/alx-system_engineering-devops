@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #Authenticate using your private key and not passphrase
 Host ubuntu@18.207.139.77
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
