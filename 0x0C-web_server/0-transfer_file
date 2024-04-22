@@ -8,7 +8,7 @@ else
 	user="$3"
 	path_to_ssh_key="$4"
 
-	ssh -o StrictHostKeyChecking=no -i "$path_to_ssh_key" "$path_to_file" "$user@$ip":~/
+	scp -o StrictHostKeyChecking=no -i "$path_to_ssh_key" "$path_to_file" "$user@$ip":~/
 fi
 
 if ["$?" -eq 0];then
