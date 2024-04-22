@@ -1,18 +1,12 @@
 #!/usr/bin/env bash
-if ["$#" -lt 3];then
-	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-	exit 1
-else
-	path_to_file="$1"
-	ip="$2"
-	user="$3"
-	path_to_ssh_key="$4"
+# uploads a file to a server
 
-	scp -o StrictHostKeyChecking=no -i "$path_to_ssh_key" "$path_to_file" "$user@$ip":~/
+msg="Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+
+if [ "$4" ]; then
+   scp -i "$4" -o StrictHostKeyChecking=no "$1" "$3@$2:~"
+elif [ "$3" ]; then
+     scp -o StrictHostKeyChecking=no "$1" "$3@$2~"
+else
+	echo "$msg";
 fi
-
-if ["$?" -eq 0];then
-	echo "File successfully transfered"
-else
-	echo "Error exist"
-fi  
