@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
+# Configures a new Ubuntu machine by installing Nginx and setting up redirection
+
+# Update package index
 sudo apt-get update -y
+
+# Install Nginx
 sudo apt-get install -y nginx
 
-# starting nginx service
+# Start nginx service
 sudo service nginx start
 
-# Creating new index
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
+# Create new index file
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 
-# Setting up /redirect_me to a youtube video
-sudo sed -i 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+# Set up /redirect_me to redirect to a YouTube video
+sudo sed -i '/^server {/a \       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 
-# Restarting nginx
+# Restart nginx
 sudo service nginx restart
+
