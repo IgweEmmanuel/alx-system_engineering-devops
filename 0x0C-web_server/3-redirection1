@@ -36,6 +36,3 @@ sudo sed -i '/^http {/r '"$tmp_file" /etc/nginx/nginx.conf
 # Restart Nginx
 sudo service nginx restart
 
-# Remove the temporary file
-rm "$tmp_file"
-
