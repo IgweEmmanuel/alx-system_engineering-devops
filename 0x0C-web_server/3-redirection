@@ -6,4 +6,4 @@ sudo apt-get install -y nginx
 
 old = 'try_files \$uri \$uri/ =404;'
 new = 'return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4'
-sudo sed -i '24 s/^old$/new/' 1-install_nginx_web_server
+sudo sed -i '24 s/^$old$/$new/' 1-install_nginx_web_server
