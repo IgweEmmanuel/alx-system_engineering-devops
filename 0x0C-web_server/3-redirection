@@ -1,23 +1,12 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 #Redirection file
 
 sudo apt-get update -y
 sudo apt-get install -y nginx
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
-echo 'server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
 
-        root /var/www/html;
-        index index.htm index.html index.nginx-debian.html;
-
-        server_name _;
-
-        location {
-                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-        }
-}' | sudo tee /etc/nginx/sites-available/default
+sed -i '/server_name _;/a \ location /redirect_me {\n return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\n  }' | sudo tee /etc/nginx/sites-available/default
 
 sudo service nginx restart
