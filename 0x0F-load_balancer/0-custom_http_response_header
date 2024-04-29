@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#Configuring server web02
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+echo "X-Served-By: 530468-web-02" | sudo tee /var/www/html/index.nginx-debian.html
+
+sudo echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;	
+
+	server_name _;
+
+	add_header X-Served-By $hostname;
+
+	location / {
+		try_file \$uri \$uri/ =404;
+	}
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null
+
+sudo service nginx restart
