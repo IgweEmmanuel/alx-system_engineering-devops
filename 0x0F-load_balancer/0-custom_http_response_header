@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2154
+# add_header
 sudo apt-get update
 sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
