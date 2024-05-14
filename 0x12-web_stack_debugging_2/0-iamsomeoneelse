@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-#whoami executed by any user
-user=$1
-su "$user" -c 'whoami'
+# Set a shell for a desired user
+user="$1"
+
+if [ "$user" ] ; then
+    chsh -s "$(which bash)" "$user" && su "$user" -c "whoami"
+fi
