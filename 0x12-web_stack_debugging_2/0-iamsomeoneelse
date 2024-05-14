@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #whoami executed by any user
 user=$1
-sudo su -c 'whoami' "$user"
+su -c 'whoami' "$user"
