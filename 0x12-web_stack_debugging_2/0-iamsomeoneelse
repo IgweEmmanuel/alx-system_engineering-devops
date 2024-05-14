@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#whoami executed by any user
+if [ $# -lt 1 ]; then
+	exit 1
+fi
+user=$1
+sudo su -c 'whoami' "$user"
