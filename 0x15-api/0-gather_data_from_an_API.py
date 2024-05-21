@@ -8,7 +8,15 @@ import sys
 
 
 def fetch_todo_list(employee_id):
-    """Base URL for the JSONPlaceholder REST API"""
+    """
+    Fetches and displays the TODO list progress for a given employee ID.
+
+    Args:
+        employee_id (int): The ID of the employee whose TODO list progress is to be fetched.
+
+    Returns:
+        None
+    """
     base_url = "https://jsonplaceholder.typicode.com"
 
     # Fetch employee details
@@ -47,6 +55,19 @@ def fetch_todo_list(employee_id):
 
 
 if __name__ == "__main__":
+    """
+    Main entry point of the script. It accepts an employee ID as a command-line argument and
+    prints the TODO list progress for the given employee.
+
+    Usage:
+        python script.py <employee_id>
+
+    Args:
+        employee_id (int): The ID of the employee whose TODO list progress is to be fetched.
+
+    Returns:
+        None
+    """
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
