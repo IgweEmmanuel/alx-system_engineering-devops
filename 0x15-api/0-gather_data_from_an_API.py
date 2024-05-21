@@ -1,81 +1,40 @@
 #!/usr/bin/python3
 """
-Python script that, using a REST API, for a given employee ID,
-returns information about his/her TODO list progress.
+    Script uses REST API to return information about TODO list progress
+    based on given employee ID
 """
 import requests
-import sys
+from sys import argv
 
 
-def fetch_todo_list(employee_id):
+def get_completed(employee_id):
     """
-    Fetches and displays the TODO list progress for a given employee ID.
+        Script uses REST API to return information about TODO list progress
+        based on given employee ID
 
-    Args:
-        employee_id (int): The ID of the employee whose TODO list progress is to be fetched.
-
-    Returns:
-        None
+        Output:
+            Employee NAME is done with tasks(NUMBER_DONE/TOTAL_NUMBER):
+                TASK_TITLE
     """
-    base_url = "https://jsonplaceholder.typicode.com"
+    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+    response = requests.get(url).json()
+    name = response.get("name")
 
-    # Fetch employee details
-    employee_url = f"{base_url}/users/{employee_id}"
-    response = requests.get(employee_url)
+    done = 0
+    tasks = []
+    total = 0
+    todo_url = 'https://jsonplaceholder.typicode.com/todos/'
+    for line in requests.get(todo_url).json():
+        if line.get('userId') == employee_id:
+            total += 1
+            if line.get('completed'):
+                done += 1
+                tasks.append(line.get('title'))
 
-    if response.status_code != 200:
-        print("Error: Employee not found")
-        return
-
-    employee = response.json()
-    employee_name = employee['name']
-
-    # Fetch employee's todo list
-    todo_url = f"{base_url}/todos?userId={employee_id}"
-    response = requests.get(todo_url)
-
-    if response.status_code != 200:
-        print("Error: Unable to fetch TODO list")
-        return
-
-    todo_list = response.json()
-
-    total_tasks = len(todo_list)
-    done_tasks = [task for task in todo_list if task['completed']]
-    number_of_done_tasks = len(done_tasks)
-
-    # Print the employee's todo list progress
-    print(
-        f"Employee {employee_name} is done
-        with tasks({number_of_done_tasks}/{total_tasks}): "
-    )
-
-    for task in done_tasks:
-        print(f"\t {task['title']}")
+    print("Employee {} is done with tasks({}/{}):".format(name, done, total))
+    for task in tasks:
+        print("\t {}".format(task))
 
 
 if __name__ == "__main__":
-    """
-    Main entry point of the script. It accepts an employee ID as a command-line argument and
-    prints the TODO list progress for the given employee.
-
-    Usage:
-        python script.py <employee_id>
-
-    Args:
-        employee_id (int): The ID of the employee whose TODO list progress is to be fetched.
-
-    Returns:
-        None
-    """
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-
-    try:
-        employee_id = int(sys.argv[1])
-    except ValueError:
-        print("Error: Employee ID must be an integer")
-        sys.exit(1)
-
-    fetch_todo_list(employee_id)
+    get_completed(int(argv[1]))
