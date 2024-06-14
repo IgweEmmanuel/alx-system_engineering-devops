@@ -1,5 +1,4 @@
-
-bligatory puppet comment. 
+# bligatory puppet comment. 
 exec { 'hard limit':
   command => "sed -i 's/5/4000/' /etc/security/limits.conf",
   path    => '/bin'
